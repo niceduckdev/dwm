@@ -22,7 +22,7 @@ static const char *tags[
 ] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
 static const Rule rules[] = {
-	{ "Chromium"         ,  NULL,       NULL,       1 << 3,       0,           -1 },
+    { "Eww",      NULL,       NULL,       0,            1,           -1 },
 };
 
 static const float mfact = 0.50;
@@ -53,16 +53,16 @@ static const Key keys[] = {
 	{ MODKEY, XK_h, setmfact, {.f = -0.05} },
 	{ MODKEY, XK_l, setmfact, {.f = +0.05} },
 	{ MODKEY, XK_q, killclient, {0} },
-	TAGKEYS(XK_1, 0)
-	TAGKEYS(XK_2, 1)
-	TAGKEYS(XK_3, 2)
-	TAGKEYS(XK_4, 3)
-	TAGKEYS(XK_5, 4)
-	TAGKEYS(XK_6, 5)
-	TAGKEYS(XK_7, 6)
-	TAGKEYS(XK_8, 7)
-	TAGKEYS(XK_9, 8)
-	TAGKEYS(XK_0, 9)
+	TAGKEYS(XK_ampersand, 0)
+	TAGKEYS(XK_eacute, 1)
+	TAGKEYS(XK_quotedbl, 2)
+	TAGKEYS(XK_apostrophe, 3)
+	TAGKEYS(XK_parenleft, 4)
+	TAGKEYS(XK_section, 5)
+	TAGKEYS(XK_egrave, 6)
+	TAGKEYS(XK_exclam, 7)
+	TAGKEYS(XK_ccedilla, 8)
+	TAGKEYS(XK_agrave, 9)
 };
 
 static const Button buttons[] = {{}};
