@@ -19,7 +19,7 @@ static const char *colors[][3] = {
 };
 
 static const char *tags[
-] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
     { "Eww",      NULL,       NULL,       0,            1,           -1 },
@@ -41,13 +41,12 @@ static const Layout layouts[] = {
 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-static char dmenumon[2] = "0";
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont };
+static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
-	{ MODKEY, XK_space, spawn, SHCMD("rofi -show drun") },
-	{ MODKEY, XK_t, spawn, SHCMD("alacritty") },
+	{ MODKEY, XK_space, spawn, {.v = launchercmd } },
+	{ MODKEY, XK_t, spawn, {.v = termcmd } },
 	{ MODKEY, XK_j, focusstack, {.i = +1 } },
 	{ MODKEY, XK_k, focusstack, {.i = -1 } },
 	{ MODKEY, XK_h, setmfact, {.f = -0.05} },
@@ -59,10 +58,10 @@ static const Key keys[] = {
 	TAGKEYS(XK_apostrophe, 3)
 	TAGKEYS(XK_parenleft, 4)
 	TAGKEYS(XK_section, 5)
-	TAGKEYS(XK_egrave, 6)
+	/* TAGKEYS(XK_egrave, 6)
 	TAGKEYS(XK_exclam, 7)
 	TAGKEYS(XK_ccedilla, 8)
-	TAGKEYS(XK_agrave, 9)
+	TAGKEYS(XK_agrave, 9) */
 };
 
 static const Button buttons[] = {{}};

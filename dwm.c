@@ -183,7 +183,6 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void setgaps(int oh, int ov, int ih, int iv);
 static void incrgaps(const Arg *arg);
 static void incrigaps(const Arg *arg);
 static void incrogaps(const Arg *arg);
@@ -736,10 +735,28 @@ drawbar(Monitor *m)
 				urg & 1 << i);
 		x += w;
 	}
+	
+	/*
+		w = TEXTW(m->ltsymbol);
+		drw_setscheme(drw, scheme[SchemeNorm]);
+		x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
-	drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+    if ((w = m->ww - tw - x) > bh) {
+    	if (m->sel) {
+    		drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+    		drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+    		if (m->sel->isfloating)
+    			drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+		} else {
+    		drw_setscheme(drw, scheme[SchemeNorm]);
+    		drw_rect(drw, x, 0, w, bh, 1, 1);
+    	}
+    }
+	*/
 
-	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
+    drw_setscheme(drw, scheme[SchemeNorm]);
+    drw_rect(drw, x, 0, w, bh, 1, 1);
+    drw_map(drw, m->barwin, 0, 0, m->ww, bh);
 }
 
 void
@@ -1748,8 +1765,6 @@ spawn(const Arg *arg)
 {
 	struct sigaction sa;
 
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
